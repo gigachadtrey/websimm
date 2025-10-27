@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "WebSim API MCP Server - Fetch and interact with WebSim public data",
   "main": "server.js",
+  "module": "server.js",
   "type": "module",
   "scripts": {
     "start": "node server.js",
