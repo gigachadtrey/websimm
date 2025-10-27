@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "websim": {
+      "command": "node",
+      "args": ["/workspace/websim-mcp-server/server.js"],
+      "env": {},
+      "description": "WebSim API MCP Server - Access WebSim's public data including projects, users, feeds, assets, and comments"
+    }
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "name": "WebSim MCP Server",
+  "version": "1.0.0",
+  "description": "Complete WebSim API integration for MCP clients. Access projects, users, feeds, assets, and comments from WebSim's public API.",
+  "repository": "https://github.com/minimax/websim-mcp-server",
+  "homepage": "https://websim.com",
+  "author": {
+    "name": "MiniMax Agent",
+    "email": "support@minimax.chat"
+  },
+  "license": "MIT",
+  "keywords": [
+    "websim",
+    "mcp",
+    "api",
+    "games",
+    "projects",
+    "users",
+    "feeds",
+    "assets",
+    "metadata",
+    "smithery"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.1",
+    "zod": "^3.25.76",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "eslint": "^9.12.0",
+    "prettier": "^3.3.3"
+  },
+  "mcp": {
+    "transport": "stdio",
+    "features": {
+      "tools": true,
+      "resources": false,
+      "prompts": false,
+      "sampling": false
+    }
+  },
+  "deployment": {
+    "platform": "smithery",
+    "environment": "production",
+    "region": "global",
+    "ssl": true,
+    "cors": true
+  },
+  "documentation": {
+    "overview": "This MCP server provides comprehensive access to WebSim's public API, enabling MCP clients to interact with WebSim's ecosystem of projects, users, feeds, and assets.",
+    "features": [
+      "Project Management - Retrieve projects by ID or slug, list all projects, get project statistics and revisions",
+      "User Management - Access user profiles, statistics, and social connections (following/followers)",
+      "Feed & Discovery - Browse trending and latest content, search feeds with sorting options",
+      "Assets & Search - Search assets, find related keywords, access project-specific assets",
+      "Comments - Read project comments and comment replies",
+      "Health Monitoring - Built-in health check endpoint for API accessibility"
+    ],
+    "authentication": "No authentication required - uses public WebSim API",
+    "rate_limiting": "Built-in timeout handling and error recovery",
+    "pagination": "All list endpoints support pagination via limit and offset parameters"
+  },
+  "api": {
+    "base_url": "https://api.websim.com",
+    "version": "v1",
+    "endpoints": {
+      "projects": "/api/v1/projects",
+      "users": "/api/v1/users",
+      "feed": "/api/v1/feed",
+      "search": "/api/v1/search",
+      "comments": "/api/v1/projects/{id}/comments"
+    },
+    "documentation": "https://api.websim.com/docs"
+  },
+  "examples": {
+    "get_project": {
+      "tool": "get_project_by_id",
+      "description": "Retrieve a specific WebSim project",
+      "arguments": {
+        "project_id": "example-project-id"
+      }
+    },
+    "list_projects": {
+      "tool": "list_all_projects",
+      "description": "Browse public WebSim projects",
+      "arguments": {
+        "limit": 20,
+        "offset": 0
+      }
+    },
+    "search_users": {
+      "tool": "search_users",
+      "description": "Find WebSim users",
+      "arguments": {
+        "query": "developer",
+        "limit": 10
+      }
+    },
+    "get_trending": {
+      "tool": "get_trending_feed",
+      "description": "Get trending WebSim projects",
+      "arguments": {
+        "limit": 20
+      }
+    }
+  },
+  "tags": [
+    "websim",
+    "games",
+    "api",
+    "metadata"
+  ],
+  "category": "api",
+  "visibility": "public"
+}
