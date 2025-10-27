@@ -120,17 +120,7 @@
         }
       }
     },
-    {
-      "name": "get_user_stats",
-      "description": "Get detailed statistics for a WebSim user. Perfect for 'Show me @username's statistics' queries.",
-      "parameters": {
-        "username": {
-          "type": "string",
-          "description": "The username of the WebSim user",
-          "required": true
-        }
-      }
-    },
+
     {
       "name": "search_projects",
       "description": "Search for WebSim projects by keywords, tags, or descriptions. Perfect for 'Find projects about [topic]' queries.",
