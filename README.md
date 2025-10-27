@@ -1,30 +1,43 @@
 # WebSim MCP Server
 
-A production-ready Model Context Protocol (MCP) server for accessing WebSim API data. This server provides comprehensive access to WebSim project information, user profiles, trending content, and community features.
+A production-ready Model Context Protocol (MCP) server for accessing the real WebSim API. This server provides comprehensive access to WebSim trending sites, user profiles, bookmarks, and community features using the official WebSim API endpoints.
 
 ## 🌟 Features
 
-### 📊 Project Discovery & Management
-- **Get Project Details**: Retrieve comprehensive project information by ID or username/slug
-- **Trending Projects**: Access popular and trending content with filtering options
-- **Project Search**: Find projects by keywords, tags, or descriptions
-- **Project Statistics**: View engagement metrics, fork counts, and activity data
+### 🔥 Trending & Discovery
+- **Trending Sites**: Access popular and trending sites with time range filtering (day/week/month/all)
+- **Site Details**: Get comprehensive site information by ID or username/slug
+- **Real-time Data**: Live access to WebSim's trending algorithms and user engagement
 
-### 👥 User Profile & Analytics
-- **User Profiles**: Get detailed user information including bio, join date, and verification status
-- **User Projects**: Browse projects created by specific users with sorting options
-- **User Statistics**: Analyze user engagement metrics and community standing
-- **Follower Analytics**: Track user growth and influence metrics
+### 👥 User Profile & Social Features
+- **User Profiles**: Get detailed user information including usernames, avatar, and profile data
+- **User Bookmarks**: Browse bookmarks created by specific users
+- **Following & Followers**: Track social connections and user relationships
+- **Liked Sites**: Access sites that users have liked
 
-### 🎨 Asset & Content Management
-- **Asset Search**: Find images, files, and resources across WebSim projects
-- **Screenshot Gallery**: View project screenshots and revisions
-- **Related Keywords**: Discover trending topics and search suggestions
+### 🏷️ Community Insights
+- **Following Activity**: See what people you follow are bookmarking
+- **Social Discovery**: Explore user interactions and community patterns
+- **Engagement Metrics**: Track views, likes, and community engagement
 
-### 💬 Community Features
-- **Project Comments**: Access user discussions and feedback
-- **Comment Threading**: View nested conversations and replies
-- **Engagement Tracking**: Monitor likes, shares, and community interaction
+## 🔗 Available Tools
+
+### Trending & Discovery
+- **`get_trending_sites`** - Get trending sites with range and class filtering
+
+### Site Information  
+- **`get_site_details`** - Get detailed site information by ID
+- **`get_site_by_username_slug`** - Get site by username/slug path
+
+### User Management
+- **`get_user_profile`** - Get user profile by username or ID
+- **`get_user_bookmarks`** - Get bookmarks created by a user
+- **`get_user_following`** - Get list of users this user follows
+- **`get_user_followers`** - Get list of this user's followers
+
+### Social Features
+- **`get_user_likes`** - Get sites liked by a user
+- **`get_following_bookmarks`** - Get bookmarks from users being followed
 
 ## 🚀 Quick Start
 
@@ -139,17 +152,7 @@ List projects created by a specific user.
 "Find @user's projects about web development"
 ```
 
-#### `get_user_stats`
-Get detailed user statistics and analytics.
 
-**Parameters:**
-- `username` (string, required): The username of the WebSim user
-
-**Example Usage:**
-```
-"Show me johndoe's statistics"
-"What are @janesmith's stats?"
-```
 
 ### Search & Discovery
 
@@ -328,31 +331,28 @@ npm run test:integration
 
 ## 📊 API Coverage
 
-This MCP server provides access to the following WebSim API endpoints:
+This MCP server provides access to the following **real WebSim API endpoints**:
 
-### Project Operations
-- ✅ `/api/v1/projects/{id}` - Get project by ID
-- ✅ `/api/v1/users/{user}/slugs/{slug}` - Get project by username + slug
-- ✅ `/api/v1/projects` - List public projects
-- ✅ `/api/v1/projects/{id}/stats` - Get project statistics
-- ✅ `/api/v1/projects/{id}/comments` - Get project comments
-- ✅ `/api/v1/projects/{id}/revisions/{version}/screenshots` - Get project screenshots
+### Trending & Discovery
+- ✅ `/api/v1/feed/trending` - Get trending sites with filtering
+
+### Site Information
+- ✅ `/api/v1/sites/{site_id}` - Get site details by ID
+- ✅ `/api/v1/sites/{username}/{slug}` - Get site by username/slug
 
 ### User Operations
-- ✅ `/api/v1/users/{user}` - Get user profile
-- ✅ `/api/v1/users/{user}/projects` - Get user projects
-- ✅ `/api/v1/users/{user}/stats` - Get user statistics
+- ✅ `/api/v1/users/{usernameOrId}` - Get user profile by username or ID
+- ✅ `/api/v1/users/{usernameOrId}/bookmarks` - Get user bookmarks
+- ✅ `/api/v1/users/{usernameOrId}/following` - Get users that user is following
+- ✅ `/api/v1/users/{usernameOrId}/followers` - Get user's followers
+- ✅ `/api/v1/users/{usernameOrId}/likes` - Get sites liked by user
 
-### Discovery & Search
-- ✅ `/api/v1/feed/trending` - Get trending feed
-- ✅ `/api/v1/feed/search/{sort}/{search}` - Search projects
-- ✅ `/api/v1/search/assets` - Search assets
-- ✅ `/api/v1/search/related` - Get related keywords
+### Social Features
+- ✅ `/api/v1/users/{usernameOrId}/following/bookmarks` - Get bookmarks from followed users
 
-### Community Features
-- ✅ `/api/v1/users/{user}/following` - Get user following
-- ✅ `/api/v1/users/{user}/followers` - Get user followers
-- ✅ `/api/v1/users/{user}/likes` - Get user likes
+**Base URL**: `https://websim.ai/api/v1`
+**API Version**: v1
+**Authentication**: Not required (public API)
 
 ## 🏗 Architecture
 
@@ -466,24 +466,34 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🎯 Use Cases
 
-### Research & Analysis
-- "Analyze trending web simulation projects"
-- "Show me popular React-based projects"
-- "What are the most viewed projects this week?"
+### Trending Content Discovery
+- "Show me trending sites for today"
+- "What are the popular sites this week?"
+- "Get trending sites in the last month"
+- "Find trending gaming sites"
 
-### User Discovery
-- "Find influential WebSim users"
-- "Show me active contributors"
-- "Who are the top creators?"
+### Site Information Analysis
+- "Show me details for site [ID]"
+- "Tell me about @username/slug-name"
+- "What information is available for this site?"
+- "Get site statistics and engagement data"
 
-### Content Discovery
-- "Find projects about machine learning"
-- "Search for UI/UX design examples"
-- "Show me gaming-related simulations"
+### User Profile Research
+- "Show me user profile for @username"
+- "What has @username bookmarked?"
+- "Who follows @username?"
+- "Who is @username following?"
+
+### Social Network Analysis
+- "Show me what @username's follows are posting"
+- "What sites has @username liked?"
+- "Get bookmarks from users @username follows"
+- "Analyze social connections on WebSim"
 
 ### Community Insights
-- "What are people saying about AI projects?"
-- "Show me recent project comments"
-- "Find projects with high engagement"
+- "Find active community members"
+- "Show me recent bookmarking activity"
+- "What are people discovering on WebSim?"
+- "Analyze user engagement patterns"
 
 This MCP server makes WebSim's rich ecosystem accessible to AI assistants, enabling comprehensive project discovery, user analysis, and community engagement insights.
