@@ -1,5 +1,7 @@
 # WebSim MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@gigachadtrey/websimm)](https://smithery.ai/insight/@gigachadtrey/websimm)
+
 A production-ready Model Context Protocol (MCP) server for accessing WebSim API data. This server provides comprehensive access to WebSim project information, user profiles, trending content, and community features.
 
 ## 🌟 Features
@@ -33,6 +35,14 @@ A production-ready Model Context Protocol (MCP) server for accessing WebSim API 
 - **Node.js** 18.0 or higher
 - **npm** or **yarn** package manager
 - **Smithery CLI** (optional, for development)
+
+### Installing via Smithery
+
+To install WebSim MCP Server automatically via [Smithery](https://smithery.ai/insight/@gigachadtrey/websimm):
+
+```bash
+npx -y @smithery/cli install @gigachadtrey/websimm
+```
 
 ### Installation
 
